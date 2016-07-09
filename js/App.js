@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 
@@ -10,6 +9,7 @@ import * as fixtures from './services/fixtures';
 import forecastio from './services/forecastio';
 
 import AddressPage from './address/AddressPage';
+import WeatherPage from './weather/WeatherPage';
 
 forecastio.initialize(config.forecastApiKey);
 
@@ -36,17 +36,20 @@ export default class BetterWeather extends Component {
     }
   }
 
+  resetAddress = () => this.changeAddress(null);
+
   render() {
     return (
       <View style={styles.container}>
-        {this.state.forecastIoData == null ?
+        {this.state.address == null ?
           <AddressPage
             onAddressSet={this.changeAddress}
           /> :
-          <View style={{ paddingTop: 80 }}>
-            <Text>Data fetched!</Text>
-            <Text>{this.state.address.name}</Text>
-          </View>
+          <WeatherPage
+            name={this.state.address.name}
+            data={this.state.forecastIoData}
+            changeAddress={this.resetAddress}
+          />
         }
       </View>
     );
