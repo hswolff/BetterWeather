@@ -73,6 +73,21 @@ export function createLineGraph({
     .y((d) => scaleY(yAccessor(d)));
 
   return {
+    data,
+    scale: {
+      x: scaleX,
+      y: scaleY,
+    },
     path: lineShape(data),
+    ticks: data.map((datum) => {
+      const time = xAccessor(datum);
+      const value = yAccessor(datum);
+
+      return {
+        x: scaleX(time),
+        y: scaleY(value),
+        datum,
+      };
+    }),
   };
 }
