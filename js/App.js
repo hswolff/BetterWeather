@@ -5,21 +5,42 @@ import {
   View,
 } from 'react-native';
 
-// eslint-disable-next-line react/prefer-stateless-function
+import config from './config';
+import forecastio from './services/forecastio';
+
+import AddressPage from './address/AddressPage';
+
+forecastio.initialize(config.forecastApiKey);
+
 export default class BetterWeather extends Component {
+  state = {
+    address: null,
+    forecastIoData: null,
+  };
+
+  changeAddress = (address) => {
+    if (address == null) {
+      this.setState({ address, forecastIoData: null });
+    } else {
+      forecastio(address.latitude, address.longitude)
+        .then(forecastIoData => {
+          this.setState({ address, forecastIoData });
+        });
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!s
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {this.state.forecastIoData == null ?
+          <AddressPage
+            onAddressSet={this.changeAddress}
+          /> :
+          <View style={{ paddingTop: 80 }}>
+            <Text>Data fetched!</Text>
+            <Text>{this.state.address.name}</Text>
+          </View>
+        }
       </View>
     );
   }
@@ -28,18 +49,5 @@ export default class BetterWeather extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });

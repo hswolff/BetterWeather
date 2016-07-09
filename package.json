@@ -7,6 +7,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "lodash": "^4.13.1",
     "query-string": "^4.2.2",
     "react": "15.2.0",
     "react-native": "0.28.0"
