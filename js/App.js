@@ -6,26 +6,33 @@ import {
 } from 'react-native';
 
 import config from './config';
+import * as fixtures from './services/fixtures';
 import forecastio from './services/forecastio';
 
 import AddressPage from './address/AddressPage';
 
 forecastio.initialize(config.forecastApiKey);
 
+const USE_FIXTURES = true;
+
 export default class BetterWeather extends Component {
   state = {
-    address: null,
-    forecastIoData: null,
+    address: USE_FIXTURES ? fixtures.address : null,
+    forecastIoData: USE_FIXTURES ? fixtures.forecastIoData : null,
   };
 
   changeAddress = (address) => {
-    if (address == null) {
-      this.setState({ address, forecastIoData: null });
+    if (USE_FIXTURES) {
+      this.setState({ address, forecastIoData: fixtures.forecastIoData });
     } else {
-      forecastio(address.latitude, address.longitude)
-        .then(forecastIoData => {
-          this.setState({ address, forecastIoData });
-        });
+      if (address == null) {
+        this.setState({ address, forecastIoData: null });
+      } else {
+        forecastio(address.latitude, address.longitude)
+          .then(forecastIoData => {
+            this.setState({ address, forecastIoData });
+          });
+      }
     }
   }
 
