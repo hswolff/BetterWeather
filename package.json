@@ -7,6 +7,9 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "d3-array": "^1.0.0",
+    "d3-scale": "^1.0.0",
+    "d3-shape": "^1.0.0",
     "lodash": "^4.13.1",
     "query-string": "^4.2.2",
     "react": "15.2.0",

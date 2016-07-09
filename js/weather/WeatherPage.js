@@ -12,6 +12,7 @@ import {
 import Color from '../services/color';
 
 import Header from '../components/Header';
+import WeatherGraph from './WeatherGraph';
 
 // eslint-disable-next-line react/prefer-stateless-function
 export default class WeatherPage extends Component {
@@ -25,7 +26,13 @@ export default class WeatherPage extends Component {
     const {
       name,
       changeAddress,
+      data: graphData,
     } = this.props;
+
+    const graphProps = {};
+    graphProps.data = graphData.daily.data;
+    graphProps.xAccessor = (d) => new Date(d.time * 1000);
+    graphProps.yAccessor = (d) => d.temperatureMax;
 
     return (
       <View style={styles.container}>
@@ -39,6 +46,9 @@ export default class WeatherPage extends Component {
             </Text>
           </TouchableOpacity>
         </Header>
+        <View style={styles.content}>
+          <WeatherGraph {...graphProps} />
+        </View>
       </View>
     );
   }
@@ -53,5 +63,11 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
     borderBottomWidth: 1,
     borderBottomColor: Color.BlueDark,
+  },
+  content: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
 });
