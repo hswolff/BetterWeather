@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, {
   Component,
   PropTypes,
@@ -11,17 +12,17 @@ import {
   View,
 } from 'react-native';
 
-const {
-  Group,
-  Shape,
-  Surface,
-} = ART;
-
 import Morph from 'art/morph/path';
 
 import * as graphUtils from './graph-utils';
 
 import Color from '../services/color';
+
+const {
+  Group,
+  Shape,
+  Surface,
+} = ART;
 
 const PaddingSize = 20;
 const TickWidth = PaddingSize * 2;
@@ -31,11 +32,13 @@ const dimensionWindow = Dimensions.get('window');
 
 export default class WeatherGraph extends Component {
   static propTypes = {
+    /* eslint-disable react/no-unused-prop-types */
     data: PropTypes.array.isRequired,
     width: PropTypes.number.isRequired,
     height: PropTypes.number.isRequired,
     xAccessor: PropTypes.func.isRequired,
     yAccessor: PropTypes.func.isRequired,
+    /* eslint-enable */
   }
 
   static defaultProps = {
@@ -66,8 +69,9 @@ export default class WeatherGraph extends Component {
       yAccessor,
     } = nextProps;
 
-    const graphWidth = width - PaddingSize * 2;
-    const graphHeight = height - PaddingSize * 2;
+    const fullPaddingSize = PaddingSize * 2;
+    const graphWidth = width - fullPaddingSize;
+    const graphHeight = height - fullPaddingSize;
 
     const lineGraph = graphUtils.createLineGraph({
       data,
@@ -214,7 +218,7 @@ export default class WeatherGraph extends Component {
             tickStyles.width = TickWidth;
             tickStyles.left = tick.x - Math.round(TickWidth * 0.5);
 
-            tickStyles.top = tick.y + 2 - Math.round(TickWidth * 0.65);
+            tickStyles.top = (tick.y + 2) - Math.round(TickWidth * 0.65);
 
             return (
               <View key={index} style={[styles.tickLabelY, tickStyles]}>

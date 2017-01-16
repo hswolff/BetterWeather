@@ -8,20 +8,20 @@
   },
   "dependencies": {
     "art": "^0.10.1",
-    "d3-array": "^1.0.0",
-    "d3-scale": "^1.0.0",
-    "d3-shape": "^1.0.0",
-    "lodash": "^4.13.1",
-    "query-string": "^4.2.2",
-    "react": "^15.4.0",
-    "react-native": "^0.39.0"
+    "d3-array": "^1.0.2",
+    "d3-scale": "^1.0.4",
+    "d3-shape": "^1.0.4",
+    "lodash": "^4.17.4",
+    "query-string": "^4.3.1",
+    "react": "^15.4.2",
+    "react-native": "^0.40.0"
   },
   "devDependencies": {
-    "babel-eslint": "^6.1.0",
-    "eslint": "^2.9.0",
-    "eslint-config-airbnb": "^9.0.1",
-    "eslint-plugin-import": "^1.10.1",
-    "eslint-plugin-jsx-a11y": "^1.5.3",
-    "eslint-plugin-react": "^5.2.2"
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0"
   }
 }

@@ -24,15 +24,13 @@ export default class BetterWeather extends Component {
   changeAddress = (address) => {
     if (USE_FIXTURES) {
       this.setState({ address, forecastIoData: fixtures.forecastIoData });
+    } else if (address == null) {
+      this.setState({ address, forecastIoData: null });
     } else {
-      if (address == null) {
-        this.setState({ address, forecastIoData: null });
-      } else {
-        forecastio(address.latitude, address.longitude)
-          .then(forecastIoData => {
-            this.setState({ address, forecastIoData });
-          });
-      }
+      forecastio(address.latitude, address.longitude)
+        .then((forecastIoData) => {
+          this.setState({ address, forecastIoData });
+        });
     }
   }
 

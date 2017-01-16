@@ -49,11 +49,11 @@ export default class WeatherPage extends Component {
 
     const graphProps = {};
     graphProps.data = graphData.daily.data;
-    graphProps.xAccessor = (d) => new Date(d.time * 1000);
+    graphProps.xAccessor = d => new Date(d.time * 1000);
     if (showMax) {
-      graphProps.yAccessor = (d) => d.temperatureMax;
+      graphProps.yAccessor = d => d.temperatureMax;
     } else {
-      graphProps.yAccessor = (d) => d.temperatureMin;
+      graphProps.yAccessor = d => d.temperatureMin;
     }
 
     return (

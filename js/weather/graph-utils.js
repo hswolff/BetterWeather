@@ -1,6 +1,7 @@
 import * as scale from 'd3-scale';
 import * as shape from 'd3-shape';
 import * as d3Array from 'd3-array';
+
 const d3 = {
   scale,
   shape,
@@ -69,8 +70,8 @@ export function createLineGraph({
   const scaleY = createScaleY(extentY[0], extentY[1], height);
 
   const lineShape = d3.shape.line()
-    .x((d) => scaleX(xAccessor(d)))
-    .y((d) => scaleY(yAccessor(d)));
+    .x(d => scaleX(xAccessor(d)))
+    .y(d => scaleY(yAccessor(d)));
 
   return {
     data,

@@ -20,7 +20,7 @@ export default function Header(props) {
   );
 }
 Header.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
 
 const styles = StyleSheet.create({

@@ -5,9 +5,24 @@
     "eqeqeq": ["error", "smart"],
     "max-len": ["error", 80],
     "no-use-before-define": 0,
+    "react/jsx-filename-extension": 0,
     "react/jsx-boolean-value": ["error", "always"],
     "react/jsx-no-bind": ["error", {
       "allowArrowFunctions": true
     }],
+    "comma-dangle": ["error", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore",
+    }],
+    "react/forbid-prop-types": 0,
+    "import/prefer-default-export": 0
+  },
+  "globals": {
+    "fetch": false,
+    "cancelAnimationFrame": false,
+    "requestAnimationFrame": false
   }
 }

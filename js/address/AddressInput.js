@@ -19,6 +19,7 @@ export default class AddressLookup extends Component {
   };
 
   static defaultProps = {
+    style: null,
     onError: _.noop,
     onSuccess: _.noop,
     onRequest: _.noop,
@@ -32,7 +33,7 @@ export default class AddressLookup extends Component {
     this.props.onRequest();
     const text = e.nativeEvent.text;
 
-    geocode(text).then(res => {
+    geocode(text).then((res) => {
       if (res.results.length === 0) {
         this.props.onError(text);
       } else {
@@ -53,7 +54,7 @@ export default class AddressLookup extends Component {
       <TextInput
         style={[styles.textInput, this.props.style]}
         onSubmitEditing={this.lookupGeo}
-        onChangeText={(text) => this.setState({ text })}
+        onChangeText={text => this.setState({ text })}
         value={this.state.text}
         returnKeyType="go"
       />
